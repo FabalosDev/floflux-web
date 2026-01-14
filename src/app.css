@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+@theme {
+  /* 📦 FLOFLUX PALETTE */
+  /* We add '--color-' so Tailwind creates bg-shipping-orange automatically */
+  --color-shipping-orange: #f97316;
+  --color-tape-yellow: #facc15;
+  --color-ready-green: #16a34a;
+
+  /* Standard vars for background/text (no utility generation needed) */
+  --bg-factory: #f4f4f5;
+  --ink-heavy: #18181b;
+  --ink-light: #71717a;
+
+  --font-mono: "JetBrains Mono", monospace;
+  --font-sans: "Inter", sans-serif;
+}
+
+/* 🏗️ GLOBAL STYLES */
+body {
+  background-color: var(--bg-factory);
+  color: var(--ink-heavy);
+  font-family: var(--font-sans);
+
+  /* Grid Pattern */
+  background-image:
+    linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* 🏭 UTILITIES */
+@layer utilities {
+  .panel-shipping {
+    @apply border-2 border-black bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)];
+  }
+
+  .btn-factory {
+    /* Now that we used --color-shipping-orange, this class exists! */
+    @apply bg-black text-white px-5 py-2 text-xs font-mono font-bold uppercase tracking-wide transition-colors cursor-pointer hover:bg-shipping-orange active:translate-y-1 active:shadow-none;
+  }
+}
