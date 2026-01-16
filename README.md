@@ -1,38 +1,44 @@
-# sv
+# 📦 FLOFLUX.DISTRO
+> **Engineering Lab & Resource Distribution Node** > *Operated by Fabalos Engineering // Node_01*
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+Floflux is a highly-opinionated, industrial-aesthetic SvelteKit application serving as the "Lab" lane for Fabalos Engineering. It acts as a digital distribution point for interactive tools, raw workflows (n8n), and utility scripts (Python).
 
-## Creating a project
+![System Status](https://img.shields.io/badge/SYSTEM-ONLINE-success?style=for-the-badge)
+![Version](https://img.shields.io/badge/VERSION-2.0.4-orange?style=for-the-badge)
+![Stack](https://img.shields.io/badge/STACK-SVELTEKIT%20%2B%20TAILWIND-black?style=for-the-badge)
 
-If you're seeing this, you've probably already done this step. Congrats!
+---
 
-```sh
-# create a new project in the current directory
-npx sv create
+## 🏗️ Architecture
+This is not a marketing site. It is a **Control Room**.
+The UI is designed to feel like a physical industrial interface:
+* **Live Telemetry:** Simulates latency pings and system heartbeats.
+* **Manifest Design:** Information is presented in "Shipping Label" formats.
+* **X-Ray Mode:** Every tool has a "View_Source" toggle to inspect the underlying code logic.
 
-# create a new project in my-app
-npx sv create my-app
-```
+### Tech Stack
+* **Framework:** SvelteKit (Vite)
+* **Styling:** Tailwind CSS (v4)
+* **Icons:** None (Pure CSS / Text)
+* **State:** Svelte Stores + Local Component State
 
-## Developing
+---
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+## 📦 Inventory Manifest (Current Build)
+The application currently serves 3 core engineering assets:
 
-```sh
-npm run dev
+| ID | Name | Type | Description |
+| :--- | :--- | :--- | :--- |
+| **FLO-001** | `Pneumatic_Cylinder_Calc` | **Interactive App** | ISO 1219 compliant sizing tool. Inputs pressure/load; outputs bore & air consumption. |
+| **FLO-002** | `Email_To_GTasks_Flow` | **n8n Workflow** | Universal HTTP-based JSON blueprint for parsing emails via Gemini 1.5 Flash. |
+| **FLO-003** | `Jules_Script_Bin` | **Python CLI** | `jules.py` utility for CSV cleaning, PDF extraction, and image resizing. |
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+---
 
-## Building
+## ⚡ Quick Start
 
-To create a production version of your app:
-
-```sh
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+### 1. Initialize Node
+```bash
+git clone [https://github.com/fabalosdev/floflux-web.git](https://github.com/fabalosdev/floflux-web.git)
+cd floflux-web
+npm install
