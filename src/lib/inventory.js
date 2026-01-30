@@ -57,5 +57,23 @@ export const inventory = [
 		install: 'python jules.py --help',
 		// 👇 New Snippet shows how to use it
 		codeSnippet: `$ python jules.py --help\n\nusage: jules.py [-h] {clean,resize,extract} ...\n\nJules: The Senior Engineer's Swiss Army Knife\n\npositional arguments:\n  {clean,resize,extract}\n    clean             Normalize a messy CSV file\n    resize            Batch resize images in a folder\n    extract           Scrape tables from a PDF`
+	},
+	{
+    id: 'FLO-004',
+    name: 'Floflux_Live_Sandbox',
+    type: 'LAB TOOL',
+    status: 'LIVE_BETA',
+    size: '12KB',
+    desc: 'Real-time HTML/CSS/JS code renderer with isolated iframe execution for rapid prototyping.',
+    version: 'v1.0.0',
+    releaseDate: '2026-01-30',
+    specs: [
+        'Isolated <iframe> Execution',
+        'Reactive srcDoc Rendering',
+        'Security-sandboxed Environment',
+        'Dual-pane Input/Output'
+    ],
+    install: 'Access via /code-renderer',
+    codeSnippet: `<CodeSandBox />`
 	}
 ];

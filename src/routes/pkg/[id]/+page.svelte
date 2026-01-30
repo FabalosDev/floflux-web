@@ -5,6 +5,7 @@
 
 	// 🔌 IMPORT TOOLS
 	import CylinderCalc from '$lib/components/tools/CylinderCalc.svelte';
+	import CodeSandBox from '$lib/components/labs/CodeSandbox.svelte';
 
 	// 1. Get Data
 	const productId = $page.params.id;
@@ -18,7 +19,7 @@
 	}
 
 	// 4. Logic: Define which IDs are interactive apps vs. static files
-	const isInteractive = product.id === 'FLO-001';
+	const isInteractive = product.id === 'FLO-001' || product.id === 'FLO-004';
 
 	// 5. View State (The "X-Ray" Toggle)
 	let showSource = false;
@@ -114,26 +115,29 @@
 				</div>
 
 				<div class="min-h-[400px]">
-					{#if showSource}
-						<div class="relative h-full overflow-hidden border border-black bg-zinc-900 p-6 text-xs shadow-inner">
-							<div class="absolute top-0 right-0 bg-white/20 px-2 py-1 text-[10px] text-white">EcmaScript_6</div>
-							<pre class="h-full overflow-x-auto font-mono text-green-400 leading-relaxed"><code>{product.codeSnippet}</code></pre>
-						</div>
-
-					{:else}
-						{#if isInteractive}
-							<CylinderCalc />
-						{:else}
-							<div class="relative h-full border border-dashed border-black/30 bg-zinc-50 p-8 flex flex-col items-center justify-center text-center">
-								<div class="text-6xl mb-4">📄</div>
-								<h4 class="font-bold uppercase">Ready for Transfer</h4>
-								<p class="font-mono text-xs text-zinc-500 mt-2 max-w-xs">
-									Click "View_Source" to inspect the raw code, or "Download" to acquire the asset.
-								</p>
-							</div>
-						{/if}
-					{/if}
-				</div>
+  {#if showSource}
+    <div class="relative h-full overflow-hidden border border-black bg-zinc-900 p-6 text-xs shadow-inner">
+      <div class="absolute top-0 right-0 bg-white/20 px-2 py-1 text-[10px] text-white">EcmaScript_6</div>
+      <pre class="h-full overflow-x-auto font-mono text-green-400 leading-relaxed"><code>{product.codeSnippet}</code></pre>
+    </div>
+  {:else}
+    {#if isInteractive}
+      {#if product.id === 'FLO-001'}
+        <CylinderCalc />
+      {:else if product.id === 'FLO-004'}
+        <CodeSandBox />
+      {/if}
+    {:else}
+      <div class="relative h-full border border-dashed border-black/30 bg-zinc-50 p-8 flex flex-col items-center justify-center text-center">
+        <div class="text-6xl mb-4">📄</div>
+        <h4 class="font-bold uppercase">Ready for Transfer</h4>
+        <p class="font-mono text-xs text-zinc-500 mt-2 max-w-xs">
+          Click "View_Source" to inspect the raw code, or "Download" to acquire the asset.
+        </p>
+      </div>
+    {/if}
+  {/if}
+</div>
 			</div>
 
 		</div>
