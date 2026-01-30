@@ -5,7 +5,7 @@
 
 	// 🔌 IMPORT TOOLS
 	import CylinderCalc from '$lib/components/tools/CylinderCalc.svelte';
-	import CodeSandBox from '$lib/components/labs/CodeSandbox.svelte';
+	import CodeSandBox from '$lib/components/labs/CodeSandBox.svelte';
 
 	// 1. Get Data
 	const productId = $page.params.id;
