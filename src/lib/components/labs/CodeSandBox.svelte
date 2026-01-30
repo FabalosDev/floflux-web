@@ -7,49 +7,26 @@
 
   let iframe: HTMLIFrameElement;
   let containerHeight = 300;
-  const SCALE_FACTOR = 0.5; // 50% Zoom out para "cutesy" miniature look
+  const SCALE_FACTOR = 0.5;
 
   function updateHeight() {
     if (iframe && iframe.contentWindow) {
-      // Kunin ang actual height ng content
       const scrollHeight = iframe.contentWindow.document.body.scrollHeight;
-
-      // Calculate height base sa scale (scrollHeight * scale)
-      // Nagdadagdag tayo ng padding para sa labels at borders
       containerHeight = (scrollHeight * SCALE_FACTOR) + 60;
     }
   }
 
-  // Single source of truth para sa srcDoc
-  $: srcDoc = `
-    <!DOCTYPE html>
-    <html>
-      <head>
-        <meta charset="utf-8">
-        <style>
-          body {
-            background: white;
-            color: #1a1a1a;
-            padding: 2rem;
-            margin: 0;
-            font-family: sans-serif;
-            width: 100%;
-            box-sizing: border-box;
-            overflow: hidden; /* Iwas scrollbars sa loob ng miniature */
-          }
-        </style>
-      </head>
-      <body>
-        ${code}
-      </body>
-    </html>
-  `;
-
-  $: if (code) {
-    setTimeout(updateHeight, 100);
+  // 📋 COPY TO CLIPBOARD
+  async function copyToClipboard() {
+    try {
+      await navigator.clipboard.writeText(code);
+      alert('Code copied to clipboard!');
+    } catch (err) {
+      console.error('Failed to copy: ', err);
+    }
   }
 
-  // 📥 DOWNLOAD LOGIC
+  // 📥 DOWNLOAD FUNCTION
   function downloadCode() {
     const blob = new Blob([srcDoc], { type: 'text/html' });
     const url = URL.createObjectURL(blob);
@@ -60,7 +37,7 @@
     URL.revokeObjectURL(url);
   }
 
-  // 🔍 VIEW COMPLETE (Open in New Tab)
+  // 🔍 VIEW COMPLETE
   function viewComplete() {
     const newTab = window.open();
     if (newTab) {
@@ -69,13 +46,34 @@
       newTab.document.close();
     }
   }
+
+  $: srcDoc = `
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <meta charset="utf-8">
+        <style>
+          body {
+            background: white; color: #1a1a1a; padding: 2rem; margin: 0;
+            font-family: sans-serif; width: 100%; box-sizing: border-box; overflow: hidden;
+          }
+        </style>
+      </head>
+      <body>${code}</body>
+    </html>
+  `;
+
+  $: if (code) { setTimeout(updateHeight, 100); }
 </script>
 
 <div class="sandbox-container">
   <div class="pane input-pane">
     <div class="label flex justify-between items-center">
       <span>INPUT: SNIPPET</span>
-      <button on:click={downloadCode} class="btn-mini">Download_HTML</button>
+      <div class="flex gap-2">
+        <button on:click={copyToClipboard} class="btn-mini">Copy_Code</button>
+        <button on:click={downloadCode} class="btn-mini">Download_HTML</button>
+      </div>
     </div>
     <textarea bind:value={code} spellcheck="false"></textarea>
   </div>
